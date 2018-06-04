@@ -1,16 +1,11 @@
-// Use of this source code is governed by an ISC
-// license that can be found in the LICENSE file.
-
 package bmw
 
 import (
 	"encoding/hex"
 	"testing"
 
-	"gitlab.com/nitya-sattva/go-x11/nist"
+	"github.com/samli88/go-x11-hash/nist"
 )
-
-////////////////
 
 func TestApi(t *testing.T) {
 	dgst := New()
@@ -37,8 +32,6 @@ func TestNistClose(t *testing.T) {
 		runNistClose(t, i)
 	}
 }
-
-////////////////
 
 func runNistSum(t *testing.T, idx uint64) {
 	if extr := idx & 7; extr == 0 {
@@ -115,8 +108,6 @@ func runNistClose(t *testing.T, idx uint64) {
 		t.Errorf("\nb) Close %d:\n expected: %X\n      got: %X", idx, hash, rest[:])
 	}
 }
-
-////////////////
 
 var kNistResult = []string{
 	"6A725655C42BC8A2A20549DD5A233A6A2BEB01616975851FD122504E604B46AF7D96697D0B6333DB1D1709D6DF328D2A6C786551B0CCE2255E8C7332B4819C0E",

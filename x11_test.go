@@ -1,6 +1,3 @@
-// Use of this source code is governed by an ISC
-// license that can be found in the LICENSE file.
-
 package x11
 
 import (
@@ -26,8 +23,6 @@ func TestHash(t *testing.T) {
 		}
 	}
 }
-
-////////////////
 
 var tsInfo = []struct {
 	id  string

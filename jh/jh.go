@@ -1,12 +1,9 @@
-// Use of this source code is governed by an ISC
-// license that can be found in the LICENSE file.
-
-package jhash
+package jh
 
 import (
 	"fmt"
 
-	"gitlab.com/nitya-sattva/go-x11/hash"
+	"github.com/samli88/go-x11-hash/hash"
 )
 
 // HashSize holds the size of a hash in bytes.
@@ -14,8 +11,6 @@ const HashSize = int(64)
 
 // BlockSize holds the size of a block in bytes.
 const BlockSize = uintptr(64)
-
-////////////////
 
 type digest struct {
 	ptr uintptr
@@ -32,8 +27,6 @@ func New() hash.Digest {
 	ref.Reset()
 	return ref
 }
-
-////////////////
 
 // Reset resets the digest to its initial state.
 func (ref *digest) Reset() {
@@ -163,7 +156,7 @@ func (ref *digest) Write(src []byte) (int, error) {
 // to Close with a dst that is smaller then HashSize will return an error.
 func (ref *digest) Close(dst []byte, bits uint8, bcnt uint8) error {
 	if ln := len(dst); HashSize > ln {
-		return fmt.Errorf("JHash Close: dst min length: %d, got %d", HashSize, ln)
+		return fmt.Errorf("JH Close: dst min length: %d, got %d", HashSize, ln)
 	}
 
 	var ocnt uintptr
@@ -207,8 +200,6 @@ func (*digest) Size() int {
 func (*digest) BlockSize() int {
 	return int(BlockSize)
 }
-
-////////////////
 
 func decUInt64le(src []byte) uint64 {
 	return (uint64(src[0]) |
@@ -426,8 +417,6 @@ func slMutateExtend(r, ro uint64, hi, lo []uint64) {
 	tmp = (lo[7] & (kWrapValue[ro])) << (kWrapOffset[ro])
 	lo[7] = ((lo[7] >> (kWrapOffset[ro])) & (kWrapValue[ro])) | tmp
 }
-
-////////////////
 
 var kInit = []uint64{
 	uint64(0x17aa003e964bd16f), uint64(0x43d5157a052e6a63),

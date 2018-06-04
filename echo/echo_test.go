@@ -1,16 +1,11 @@
-// Use of this source code is governed by an ISC
-// license that can be found in the LICENSE file.
-
 package echo
 
 import (
 	"encoding/hex"
 	"testing"
 
-	"gitlab.com/nitya-sattva/go-x11/nist"
+	"github.com/samli88/go-x11-hash/nist"
 )
-
-////////////////
 
 func TestApi(t *testing.T) {
 	dgst := New()
@@ -37,8 +32,6 @@ func TestNistClose(t *testing.T) {
 		runNistClose(t, i)
 	}
 }
-
-////////////////
 
 func runNistSum(t *testing.T, idx uint64) {
 	if extr := idx & 7; extr == 0 {
@@ -115,8 +108,6 @@ func runNistClose(t *testing.T, idx uint64) {
 		t.Errorf("\nb) Close %d:\n expected: %X\n      got: %X", idx, hash, rest[:])
 	}
 }
-
-////////////////
 
 var kNistResult = []string{
 	"158F58CC79D300A9AA292515049275D051A28AB931726D0EC44BDD9FAEF4A702C36DB9E7922FFF077402236465833C5CC76AF4EFC352B4B44C7FA15AA0EF234E",

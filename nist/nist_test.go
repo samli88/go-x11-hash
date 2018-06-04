@@ -1,11 +1,6 @@
-// Use of this source code is governed by an ISC
-// license that can be found in the LICENSE file.
-
 package nist
 
 import "testing"
-
-////////////////
 
 func TestGet(t *testing.T) {
 	if ln := len(Get(0)); 0 != ln {

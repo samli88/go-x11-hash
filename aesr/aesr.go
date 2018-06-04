@@ -1,6 +1,3 @@
-// Use of this source code is governed by an ISC
-// license that can be found in the LICENSE file.
-
 package aesr
 
 // Round32sle mixes the input values with aes tables and returns the result.
@@ -44,8 +41,6 @@ func Round32ble(x0, x1, x2, x3, k0, k1, k2, k3 uint32) (uint32, uint32, uint32, 
 		kAes3[(x2>>24)&0xFF] ^ k3)
 	return y0, y1, y2, y3
 }
-
-////////////////
 
 var kAes0 = [256]uint32{
 	uint32(0xA56363C6), uint32(0x847C7CF8), uint32(0x997777EE), uint32(0x8D7B7BF6),

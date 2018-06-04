@@ -1,16 +1,11 @@
-// Use of this source code is governed by an ISC
-// license that can be found in the LICENSE file.
-
-package cubed
+package cubehash
 
 import (
 	"encoding/hex"
 	"testing"
 
-	"gitlab.com/nitya-sattva/go-x11/nist"
+	"github.com/samli88/go-x11-hash/nist"
 )
-
-////////////////
 
 func TestApi(t *testing.T) {
 	dgst := New()
@@ -37,8 +32,6 @@ func TestNistClose(t *testing.T) {
 		runNistClose(t, i)
 	}
 }
-
-////////////////
 
 func runNistSum(t *testing.T, idx uint64) {
 	if extr := idx & 7; extr == 0 {
@@ -115,8 +108,6 @@ func runNistClose(t *testing.T, idx uint64) {
 		t.Errorf("\nb) Close %d:\n expected: %X\n      got: %X", idx, hash, rest[:])
 	}
 }
-
-////////////////
 
 var kNistResult = []string{
 	"4A1D00BBCFCB5A9562FB981E7F7DB3350FE2658639D948B9D57452C22328BB32F468B072208450BAD5EE178271408BE0B16E5633AC8A1E3CF9864CFBFC8E043A",

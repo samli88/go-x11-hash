@@ -1,12 +1,9 @@
-// Use of this source code is governed by an ISC
-// license that can be found in the LICENSE file.
-
-package groest
+package groestl
 
 import (
 	"fmt"
 
-	"gitlab.com/nitya-sattva/go-x11/hash"
+	"github.com/samli88/go-x11-hash/hash"
 )
 
 // HashSize holds the size of a hash in bytes.
@@ -14,8 +11,6 @@ const HashSize = uintptr(64)
 
 // BlockSize holds the size of a block in bytes.
 const BlockSize = uintptr(128)
-
-////////////////
 
 type digest struct {
 	ptr uintptr
@@ -32,8 +27,6 @@ func New() hash.Digest {
 	ref.Reset()
 	return ref
 }
-
-////////////////
 
 // Reset resets the digest to its initial state.
 func (ref *digest) Reset() {
@@ -120,7 +113,7 @@ func (ref *digest) Write(src []byte) (int, error) {
 // to Close with a dst that is smaller then HashSize will return an error.
 func (ref *digest) Close(dst []byte, bits uint8, bcnt uint8) error {
 	if ln := len(dst); HashSize > uintptr(ln) {
-		return fmt.Errorf("Groest Close: dst min length: %d, got %d", HashSize, ln)
+		return fmt.Errorf("Groestl Close: dst min length: %d, got %d", HashSize, ln)
 	}
 
 	ptr := ref.ptr
@@ -179,8 +172,6 @@ func (*digest) Size() int {
 func (*digest) BlockSize() int {
 	return int(BlockSize)
 }
-
-////////////////
 
 func decUInt64le(src []byte) uint64 {
 	return (uint64(src[0]) |
@@ -392,8 +383,6 @@ func mRounds(r uint64, m []uint64) {
 
 	copy(m, t[:])
 }
-
-////////////////
 
 var kTab0 = []uint64{
 	uint64(0xc6a597f4a5f432c6), uint64(0xf884eb9784976ff8),

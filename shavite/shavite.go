@@ -1,13 +1,10 @@
-// Use of this source code is governed by an ISC
-// license that can be found in the LICENSE file.
-
 package shavite
 
 import (
 	"fmt"
 
-	"gitlab.com/nitya-sattva/go-x11/aesr"
-	"gitlab.com/nitya-sattva/go-x11/hash"
+	"github.com/samli88/go-x11-hash/aesr"
+	"github.com/samli88/go-x11-hash/hash"
 )
 
 // HashSize holds the size of a hash in bytes.
@@ -15,8 +12,6 @@ const HashSize = int(64)
 
 // BlockSize holds the size of a block in bytes.
 const BlockSize = uintptr(128)
-
-////////////////
 
 type digest struct {
 	ptr uintptr
@@ -33,8 +28,6 @@ func New() hash.Digest {
 	ref.Reset()
 	return ref
 }
-
-////////////////
 
 // Reset resets the digest to its initial state.
 func (ref *digest) Reset() {
@@ -161,8 +154,6 @@ func (*digest) Size() int {
 func (*digest) BlockSize() int {
 	return int(BlockSize)
 }
-
-////////////////
 
 func memset(dst []byte, src byte) {
 	for i := range dst {
@@ -369,8 +360,6 @@ func (ref *digest) compress() {
 	ref.h[0xE] ^= pE
 	ref.h[0xF] ^= pF
 }
-
-////////////////
 
 var kInit = [16]uint32{
 	uint32(0x72FCCDD8), uint32(0x79CA4727),

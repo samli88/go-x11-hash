@@ -1,12 +1,9 @@
-// Use of this source code is governed by an ISC
-// license that can be found in the LICENSE file.
-
 package bmw
 
 import (
 	"fmt"
 
-	"gitlab.com/nitya-sattva/go-x11/hash"
+	"github.com/samli88/go-x11-hash/hash"
 )
 
 // HashSize holds the size of a hash in bytes.
@@ -14,8 +11,6 @@ const HashSize = uintptr(64)
 
 // BlockSize holds the size of a block in bytes.
 const BlockSize = uintptr(128)
-
-////////////////
 
 type digest struct {
 	ptr uintptr
@@ -32,8 +27,6 @@ func New() hash.Digest {
 	ref.Reset()
 	return ref
 }
-
-////////////////
 
 // Reset resets the digest to its initial state.
 func (ref *digest) Reset() {
@@ -138,8 +131,6 @@ func (*digest) Size() int {
 func (*digest) BlockSize() int {
 	return int(BlockSize)
 }
-
-////////////////
 
 func memset(dst []byte, src byte) {
 	for i := range dst {
@@ -374,8 +365,6 @@ func expandTwo(idx uint8, qt, mv, hv []uint64) uint64 {
 		shiftBits4(qt[idx-0x02]) + shiftBits5(qt[idx-0x01]) +
 		addEltBits(uint8(idx-16), mv, hv))
 }
-
-////////////////
 
 var kInit = [16]uint64{
 	uint64(0x8081828384858687), uint64(0x88898A8B8C8D8E8F),

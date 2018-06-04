@@ -1,12 +1,9 @@
-// Use of this source code is governed by an ISC
-// license that can be found in the LICENSE file.
-
 package skein
 
 import (
 	"fmt"
 
-	"gitlab.com/nitya-sattva/go-x11/hash"
+	"github.com/samli88/go-x11-hash/hash"
 )
 
 // HashSize holds the size of a hash in bytes.
@@ -14,8 +11,6 @@ const HashSize = int(64)
 
 // BlockSize holds the size of a block in bytes.
 const BlockSize = uintptr(64)
-
-////////////////
 
 type digest struct {
 	ptr uintptr
@@ -32,8 +27,6 @@ func New() hash.Digest {
 	ref.Reset()
 	return ref
 }
-
-////////////////
 
 // Reset resets the digest to its initial state.
 func (ref *digest) Reset() {
@@ -201,8 +194,6 @@ func (*digest) Size() int {
 func (*digest) BlockSize() int {
 	return int(BlockSize)
 }
-
-////////////////
 
 func memset(dst []byte, src byte) {
 	for i := range dst {
@@ -385,8 +376,6 @@ func compress(buf []uint8, h []uint64, etv, cnt uint64, ext uintptr) {
 	h[6] = m6 ^ p6
 	h[7] = m7 ^ p7
 }
-
-////////////////
 
 var kInit = [8]uint64{
 	uint64(0x4903ADFF749C51CE), uint64(0x0D95DE399746DF03),

@@ -1,9 +1,4 @@
-// Use of this source code is governed by an ISC
-// license that can be found in the LICENSE file.
-
 package nist
-
-////////////////
 
 // Get returns a slice that contains one of the NIST
 // short messages, defined for the SHA-3 test vectors.
@@ -39,8 +34,6 @@ func IsEqual(a, b []byte) bool {
 	}
 	return true
 }
-
-////////////////
 
 // nistData contains the plaintext messages used by NIST as the test
 // vectors for the SHA-3 competitions. Messages have increasing lengths
